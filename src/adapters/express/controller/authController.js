@@ -29,7 +29,7 @@ module.exports = {
             res.status(401).json({error:"Invalid creadentials"})
         }
     },
-
+    
     getProfile:(req,res)=>{
         const user = req.user;
         res.json({message:'Profile retrieved successfully' , user});
