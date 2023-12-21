@@ -5,9 +5,18 @@ class SignupUseCase{
         this.userRepository = userRepository;
     }
 
-    async execute(username , password){
-        const user = new User(username,password);
-        return this.userRepository.save(user);
+    async execute(data){
+        try{
+            const user = new User(data);
+            if(await this.userRepository.findByEmail(data.email) == null){
+                return this.userRepository.save(user);
+            }
+            return "Already exist"
+        }catch(err){
+            console.log(err)
+            return err
+        }
+
     }
 
 }
