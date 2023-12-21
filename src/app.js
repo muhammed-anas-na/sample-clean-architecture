@@ -14,6 +14,15 @@ app.use(express.json());
 // Routes
 app.use('/auth', authRouter);
 
+
+//Error middleware
+app.use((err,req,res,next)=>{
+  res.status(500).json({
+    error:err.message
+  })
+})
+
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

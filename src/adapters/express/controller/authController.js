@@ -9,13 +9,15 @@ const signupUseCase = new SignupUseCase(userRepository);
 const loginUseCase = new LoginUseCase(userRepository);
 
 
+
 module.exports = {
-    signup:async(req,res)=>{
+    signup:async(req,res,next)=>{
         try{
             let data = await signupUseCase.execute(req.body);
             res.status(201).json({message:data})
         }catch(err){
-            res.status(500).json({error:'Internal server error'})
+            console.log("Catch block of signup controller ==>" , err.message)
+            next(err)
         }
     },
 
@@ -32,6 +34,12 @@ module.exports = {
     getProfile:(req,res)=>{
         const user = req.user;
         res.json({message:'Profile retrieved successfully' , user});
+    },
+
+
+    sanitize:(data)=>{
+        console.log(data)
+        return sanitize(data)
     }
 
 }
