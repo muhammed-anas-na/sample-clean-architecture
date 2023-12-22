@@ -1,7 +1,7 @@
 const express = require('express');
 const authRouter = require('./adapters/express/routes/auth');
 const mongodb = require('./adapters/express/mongodb/connection')
-
+const dependencies = require('./config/dependencies')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,7 +12,7 @@ mongodb()
 app.use(express.json());
 
 // Routes
-app.use('/auth', authRouter);
+app.use('/auth', authRouter(dependencies));
 
 
 //Error middleware

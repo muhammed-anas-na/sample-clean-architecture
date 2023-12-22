@@ -9,7 +9,6 @@ const signupUseCase = new SignupUseCase(userRepository);
 const loginUseCase = new LoginUseCase(userRepository);
 
 
-
 module.exports = {
     signup:async(req,res,next)=>{
         try{

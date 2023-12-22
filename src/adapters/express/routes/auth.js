@@ -1,7 +1,6 @@
 const express = require('express')
 const authController = require('../controller/authController');
 const authMiddleware = require('../middleware/authMiddleware');
-const asyncHandler = require('express-async-handler')
 
 const app = express();
 
